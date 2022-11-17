@@ -90,6 +90,7 @@ class DeputadosSpider(scrapy.Spider):
       'gasto_out_gab'
     ]
 
-    with open(f'data_{genero}.csv', 'a') as file:
-        writer = csv.writer(file)
-        writer.writerow(info_dep)
+    if (len(info_dep) == len(colunas)):
+      with open(f'data_{genero}.csv', 'a') as file:
+          writer = csv.writer(file)
+          writer.writerow(info_dep)
