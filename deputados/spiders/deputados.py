@@ -87,10 +87,16 @@ class DeputadosSpider(scrapy.Spider):
       'gasto_jul_par', 'gasto_agosto_par', 'gasto_set_par', 'gasto_out_par',
       'gasto_nov_par', 'gasto_jan_gab', 'gasto_fev_gab', 'gasto_mar_gab', 'gasto_abr_gab', 
       'gasto_maio_gab', 'gasto_junho_gab', 'gasto_jul_gab', 'gasto_agosto_gab', 'gasto_set_gab', 
-      'gasto_out_gab'
+      'gasto_out_gab', 'gasto_nov_gab'
     ]
 
-    if (len(info_dep) == len(colunas)):
-      with open(f'data_{genero}.csv', 'a') as file:
-          writer = csv.writer(file)
-          writer.writerow(info_dep)
+    '''
+    if (len(info_dep) != len(colunas)):
+      print(len(info_dep), len(colunas))
+      print(len(gastos_mensais))
+    '''
+    
+    with open(f'data_{genero}.csv', 'a') as file:
+        writer = csv.writer(file)
+        writer.writerow(info_dep)
+      

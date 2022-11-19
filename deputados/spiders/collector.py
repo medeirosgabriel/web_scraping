@@ -56,27 +56,19 @@ def get_salario_bruto(response):
 
 def get_salario_mensal(response):
   parl = response.css("table[id=gastomensalcotaparlamentar]>tbody>tr>td::text").getall()
-  meses = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ']
-  im = 0
-  salarios = []
+  meses_parl = {'JAN': 0, 'FEV': 0, 'MAR': 0, 'ABR': 0, 'MAI': 0, 'JUN': 0, 'JUL': 0, 'AGO': 0, 'SET': 0, 'OUT': 0, 'NOV': 0}
   for i in range(0, len(parl), 3):
     mes = parl[i]
-    if (mes == meses[im]):
-      valor = float(parl[i + 1].replace("\n", "").replace(" ", "").replace("R$", "").replace(".", "").replace(',', "."))
-      salarios.append(valor)
-    else:
-      salarios.append(0)
-    im += 1
-
+    valor = float(parl[i + 1].replace("\n", "").replace(" ", "").replace("R$", "").replace(".", "").replace(',', "."))
+    meses_parl[mes] = valor
+  meses_parl = list(meses_parl.values())
+  
   gab = response.css("table[id=gastomensalverbagabinete]>tbody>tr>td::text").getall()
-  im = 0
+  meses_gab = {'JAN': 0, 'FEV': 0, 'MAR': 0, 'ABR': 0, 'MAI': 0, 'JUN': 0, 'JUL': 0, 'AGO': 0, 'SET': 0, 'OUT': 0, 'NOV': 0}
   for i in range(0, len(gab), 3):
     mes = gab[i]
-    if (mes == meses[im]):
-      valor = float(gab[i + 1].replace("\n", "").replace(" ", "").replace("R$", "").replace(".", "").replace(',', "."))
-      salarios.append(valor)
-    else:
-      salarios.append(0)
-    im += 1
+    valor = float(gab[i + 1].replace("\n", "").replace(" ", "").replace("R$", "").replace(".", "").replace(',', "."))
+    meses_gab[mes] = valor
+  meses_gab  = list(meses_gab .values())
   
-  return salarios
+  return meses_parl + meses_gab
