@@ -1,4 +1,4 @@
 # Web Scraping
-### Goal: Get Deputy Data
+### Goal: Get Congressperson Data
 ### Libraries:
 - Scrapy
